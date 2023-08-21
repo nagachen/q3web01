@@ -22,6 +22,7 @@
         function find($arg){
             $sql="select * from $this->table ";
             $sql=$this->sql_one($sql,$arg);
+            // echo $sql;
             return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
         }
         function count(...$arg){
@@ -36,15 +37,17 @@
         }
 
         function save($arg){
-            if(isset($arg['ip'])){
+            
+            if(isset($arg['id'])){
                 $sql="update $this->table set ";
                 $tmp=$this->a2s($arg);
-                $sql=$sql . join(',',$tmp). " where `ip`= {$arg['id']}";
+                $sql=$sql . join(',',$tmp). " where `id`= {$arg['id']}";
             }else{
                 $sql="insert into $this->table ";
                 $keys=array_keys($arg);
                 $sql=$sql . "(`" . join("`,`",$keys)."`) values('".join("','",$arg)."')";
             }
+            
             return $this->pdo->exec($sql);
 
         }
@@ -64,9 +67,11 @@
         }
         //tools
         protected function a2s($arg){
+          
             foreach($arg as $key=>$value){
                 if($key != 'id'){
-                    $tmp[]="`$key` = '$arg'";
+                    // dd($arg);
+                    $tmp[]="`$key` = '$value'";
                 }
             }
             return $tmp;
@@ -89,12 +94,14 @@
         }
 
         protected function sql_one($sql,$arg){
+            
             if(isset($arg)){
                 if(is_array($arg)){
                     $tmp=$this->a2s($arg);
                     $sql=$sql ." where " .join("&&",$tmp);
                 }else{
-                    $sql=$sql ." where `id`=$arg";
+                
+                    $sql=$sql ." where `id` = $arg";
                 }
             }
             

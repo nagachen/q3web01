@@ -42,8 +42,9 @@ if(!empty($_POST)){
  <a href="?do=go">動態文字管理</a>|
   <a href="?do=poster">預告片海報管理</a>|
    <a href="?do=movie">院線片管理</a>|
-    <a href="?do=order">電影訂票管理</a> </div>
+    <a href="?do=order">電影訂票管理</a> 
   </div>
+  
   <?php 
  }
   ?>
@@ -60,7 +61,7 @@ if(isset($$table)){
 }
 
 ?>
-
+</div>
   <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
 </div>
 </body>

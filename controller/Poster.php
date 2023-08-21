@@ -4,5 +4,11 @@ class Poster extends DB{
     function __construct(){
         parent::__construct('poster');
     }
+    function backend(){
+        $view=[
+        "rows"=>$this->all("order by `rank`"),];
+         $this->view("./view/backend/poster.php",$view);
+         
+    }
 }
 ?>
