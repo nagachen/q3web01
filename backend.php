@@ -1,3 +1,16 @@
+<?php 
+include_once "base.php";
+
+if(!empty($_POST)){
+  if($_POST['acc']=='admin' && $_POST['pw']=="1234"){
+    $_SESSION['login']=1;
+  }else{
+    $error="帳號密碼錯誤";
+  }
+}
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0055)?do=admin -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,8 +34,33 @@
     </marquee>
   </div>
   <div id="mm">
-    
+    <?php 
+    if(isset($_SESSION['login'])){
+      ?>
+  <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;"> 
+<a href="?do=tit">網站標題管理</a>|
+ <a href="?do=go">動態文字管理</a>|
+  <a href="?do=poster">預告片海報管理</a>|
+   <a href="?do=movie">院線片管理</a>|
+    <a href="?do=order">電影訂票管理</a> </div>
   </div>
+  <?php 
+ }
+  ?>
+  <?php
+$do=$_GET['do']??'main';
+$file="./view/backend/{$do}.php";
+$table=ucfirst($do);
+if(isset($$table)){
+  $$table->backend();
+}else if(file_exists($file)){
+  include $file;
+}else{
+  include "./view/backend/main.php";
+}
+
+?>
+
   <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
 </div>
 </body>
