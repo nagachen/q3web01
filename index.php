@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html
+﻿<?php
+include_once "base.php";
+?>
+<!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0047)? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,9 +37,11 @@
 $do=$_GET['do']??'main';
 $file="./view/front/{$do}.php";
 $table=ucfirst($do);
+
 if(isset($$table)){
   $$table->front();
 }else if(file_exists($file)){
+ 
   include $file;
 }else{
   include "./view/front/main.php";

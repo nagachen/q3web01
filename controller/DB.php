@@ -17,6 +17,7 @@
         function all(...$arg){
             $sql="select * from $this->table ";
             $sql=$this->sql_all($sql,...$arg);
+            // echo $sql;
             return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         }
         function find($arg){
@@ -35,7 +36,9 @@
             $sql=$this->sql_one($sql,$arg);
             return $this->pdo->exec($sql);
         }
-
+        function q($sql){
+            return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        }
         function save($arg){
             
             if(isset($arg['id'])){
@@ -133,7 +136,7 @@
                 'start'=>$start,
                 'num'=>$num,
             ];
-            $rows=$this->all($arg,$arg . " limt $start,$num");
+            $rows=$this->all($arg,$arg2 . " limit $start,$num");
             return $rows;
         }
 

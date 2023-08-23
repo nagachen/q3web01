@@ -9,7 +9,7 @@ date_default_timezone_set('Asia/Taipei');
 
     $Poster = new Poster;
     $Movie = new Movie;
-    $Oreder = new Order;
+    $Order = new Order;
 
 
     function dd($array){

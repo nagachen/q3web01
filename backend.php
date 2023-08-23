@@ -52,7 +52,9 @@ if(!empty($_POST)){
 $do=$_GET['do']??'main';
 $file="./view/backend/{$do}.php";
 $table=ucfirst($do);
+
 if(isset($$table)){
+  
   $$table->backend();
 }else if(file_exists($file)){
   include $file;
