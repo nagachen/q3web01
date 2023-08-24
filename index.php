@@ -19,7 +19,7 @@ include_once "base.php";
     <div id="top" class="ct" style=" background:#999 center; background-size:cover; " title="替代文字">
       <h1>ABC影城</h1>
     </div>
-    <div id="top2"> <a href="index.php">首頁</a> <a href="order.php">線上訂票</a> <a href="#">會員系統</a> <a
+    <div id="top2"> <a href="index.php">首頁</a> <a href="?do=order">線上訂票</a> <a href="#">會員系統</a> <a
         href="backend.php">管理系統</a> </div>
     <div id="text"> <span class="ct">最新活動</span>
       <marquee direction="right">
@@ -39,6 +39,7 @@ $file="./view/front/{$do}.php";
 $table=ucfirst($do);
 
 if(isset($$table)){
+  
   $$table->front();
 }else if(file_exists($file)){
  

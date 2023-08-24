@@ -115,6 +115,7 @@
         protected function math($math,$col,...$arg){
             $sql="select $math($col) from $this->table ";
             $sql = $this->sql_all($sql,...$arg);
+            echo $sql;
             return $this->pdo->query($sql)->fetchColumn();
            
         }
